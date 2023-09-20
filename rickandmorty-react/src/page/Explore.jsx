@@ -3,11 +3,13 @@ import SearchInput from '../components/SearchInput'
 
 const Explore = () => {
   return (
-    <div className='mt-9'>
-      <div>
+    <div className=''>
+      <div className='py-10 flex justify-center'>
         <SearchInput />
       </div>
-      <div>Explore</div>
+      <div className=''>
+        Explore
+      </div>
     </div>
   )
 }
