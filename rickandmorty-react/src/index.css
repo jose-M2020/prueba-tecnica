@@ -55,19 +55,3 @@
   --color-primary-800: theme('colors.red.800');
   --color-primary-900: theme('colors.red.900');
 }
-
-.theme-light {
-  --neutralBg: theme('colors.white');
-  --onNeutralBg: var(--color-neutral-900);
-  --primaryBg: var(--color-primary-100);
-  --onPrimaryBg: var(--color-primary-900);
-  --primary: var(--color-primary-500);
-}
-
-.theme-dark {
-  --neutralBg: var(--color-neutral-900);
-  --onNeutralBg: theme('colors.white');
-  --primaryBg: var(--color-primary-900);
-  --onPrimaryBg: var(--color-primary-50);
-  --primary: var(--color-primary-400);
-}
