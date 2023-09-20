@@ -1,31 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const useFetch = (url, options) => {
-  const [response, setResponse] = useState(null);
+const useFetch = ({url, method, payload}, executeOnMount = true) => {
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [abort, setAbort] = useState(() => {});
+  const [loading, setLoading] = useState(false);
+
+  const controllerRef = useRef(new AbortController());
+
+  const abort = () => {
+    controllerRef.current.abort();
+  };
+
+  const execute = async (body) => {
+    try {
+      setLoading(true);
+      const res = await fetch(url, {
+        method,
+        body: JSON.stringify(body),
+        signal: controllerRef.current.signal
+      });
+
+      const json = await res.json();
+      setData(json);
+
+      setLoading(false);
+      return json;
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+    }
+  };
   
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const abortController = new AbortController();
-        const signal = abortController.signal;
-        setAbort(abortController.abort);
-        const res = await fetch(url, { ...options, signal });
-        const json = await res.json();
-        setResponse(json);
-      } catch (error) {
-        setError(error);
-      }
-    };
-    
-    fetchData();
-    return () => {
-      abort();
-    };
+    if(executeOnMount) execute(payload);
   }, []);
 
-  return { response, error, abort };
+  return { data, error, loading, execute, abort };
 };
 
 export default useFetch;
