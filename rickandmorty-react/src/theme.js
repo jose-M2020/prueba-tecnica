@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo } from "react";
+import { createContext, useState, useMemo, useEffect } from "react";
 
 const colors = ['green', 'red', 'blue'];
 // const modes = ['light', 'dark'];
@@ -10,7 +10,7 @@ const ThemeColorContext = createContext({
 
 const useThemeColor = () => {
   const [themeColor, setThemeColor] = useState(colors[0]);
-
+  
   const theme = useMemo(
     () => ({
       themeColor,

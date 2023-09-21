@@ -6,15 +6,21 @@ const Button = ({
   link,
   className,
   loading,
+  size = 'md',
   ...props
 }) => {
   const navigate = useNavigate();
+
+  const sizes = {
+    sm: 'px-4 py-2 text-xs font-medium',
+    md: 'px-6 pb-2 pt-2.5 font-medium'
+  }
 
   return (
     <button
       type="button"
       className={`
-        relative inline-block rounded bg-primary500 px-6 pb-2 pt-2.5 font-medium uppercase leading-normal text-gray-100 
+        relative inline-block rounded bg-primary500 uppercase leading-normal text-primary-700 
         transition duration-200 ease-in-out
         ${loading ? 
           'cursor-auto'
@@ -23,6 +29,7 @@ const Button = ({
           focus:bg-primary600
           active:bg-primary700
         `}
+        ${sizes[size]}
         ${className}
       `}
       {...link && {

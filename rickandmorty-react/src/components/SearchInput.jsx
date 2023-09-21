@@ -36,6 +36,8 @@ function SearchInput({setCharacters}) {
     }
   }, [loadingLocation, locationData]);
 
+  // -------- Handlers
+
   const handleSubmit = (event) => {
     event.preventDefault();
     execute();
@@ -62,7 +64,7 @@ function SearchInput({setCharacters}) {
           type="number"
           id="search"
           className="bg-white border shadow-lg text-gray-900 rounded-lg focus:shadow-primary300 outline-none block w-full pl-3 pr-9 py-4"
-          placeholder="Search..."
+          placeholder="Buscar por id"
           required
         />
         <button type="submit" className="absolute inset-y-0 right-0 flex items-center pr-3">
