@@ -1,16 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
-import axios from "axios";
-import SearchInput from '../components/SearchInput'
-import { ThemeColorContext } from '../theme';
+import { useState } from 'react'
 import CharacterCard from '../components/CharacterCard';
 import Navbar from '../components/Navbar';
-import { useRickMortyApi } from '../api/rick&MortyApi';
 
 const Explore = () => {
   const [characters, setCharacters] = useState([]);
-  useEffect(() => {
-    console.log(characters)
-  }, [])
   
   return (
     <div className=''>

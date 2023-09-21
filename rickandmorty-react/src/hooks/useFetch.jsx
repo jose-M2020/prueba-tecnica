@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 
 const useFetch = ({url, method, payload}, executeOnMount = true) => {
@@ -14,17 +15,18 @@ const useFetch = ({url, method, payload}, executeOnMount = true) => {
   const execute = async (body) => {
     try {
       setLoading(true);
-      const res = await fetch(url, {
+      
+      const response = await axios.request({
+        data: body,
+        signal: controllerRef.current.signal,
         method,
-        body: JSON.stringify(body),
-        signal: controllerRef.current.signal
+        url
       });
 
-      const json = await res.json();
-      setData(json);
+      setData(response.data);
 
       setLoading(false);
-      return json;
+      return response;
     } catch (error) {
       setError(error);
       setLoading(false);

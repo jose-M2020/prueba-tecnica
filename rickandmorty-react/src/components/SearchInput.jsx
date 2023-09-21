@@ -30,7 +30,7 @@ function SearchInput({setCharacters}) {
       axios.all(
         charactersUrls.map((url) => axios.get(url))
       ).then((resp) => {
-        const data = resp.map(resp => resp.data);
+        const data = resp.map(resp => resp.data).sort((a, b) => a.name < b.name);
         setCharacters(data);
       });
     }

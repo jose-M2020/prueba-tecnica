@@ -1,6 +1,6 @@
 import useFetch from "../hooks/useFetch";
 
-const baseUrl = 'http://127.0.0.1:8000';
+const baseUrl = 'http://127.0.0.1:8000/api';
 
 const routes = {
   getCharacters: () => `${baseUrl}/characters`,
